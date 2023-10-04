@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                 ) {
 
-                    vm.getBombitasState()
+                   vm.getBombitasState()
                     ValidateScreen(vm = vm)
                 }
             }
@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier,vm: GitPruebasViewModel) {
+fun Greeting(name: String, modifier: Modifier = Modifier) {
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
         Text(
@@ -63,7 +63,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier,vm: GitPruebasViewModel
 fun ValidateScreen(vm: GitPruebasViewModel) {
 
     val context = LocalContext.current
-    when(val repo = vm.bombitasState.value){
+    when(val repo = vm.bombitasState){
         MainResponse.Loading -> {
             ProgressBar(context)
         }
@@ -73,8 +73,9 @@ fun ValidateScreen(vm: GitPruebasViewModel) {
             Toast.makeText(context,"ERROR: ${repo.msg}",Toast.LENGTH_SHORT).show()
         }
         is MainResponse.Success -> {
-            Greeting(name = repo.bombitas.toString(), vm = vm)
+            Greeting(name = repo.bombitas.toString())
         }
     }
 
 }
+

@@ -1,6 +1,10 @@
 package com.jfg.gitpruebas.presentation
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jfg.gitpruebas.data.EjmRepository
@@ -17,8 +21,8 @@ class GitPruebasViewModel: ViewModel() {
 
     val objRepository = EjmRepository()
 
-    private var _bombitasState = MutableStateFlow<MainResponse>(MainResponse.Success(0))
-    val bombitasState: StateFlow<MainResponse> get() = _bombitasState
+    private var _bombitasState by mutableStateOf<MainResponse>(MainResponse.Loading)
+    val bombitasState get() = _bombitasState
 
     fun getBombitas() = viewModelScope.launch {
         objRepository.conuter.collect(){
@@ -42,11 +46,11 @@ class GitPruebasViewModel: ViewModel() {
 
 
      fun getBombitasState() = viewModelScope.launch {
-        _bombitasState.value = MainResponse.Loading
+        _bombitasState = MainResponse.Loading
         objRepository.conuter
             .catch { MainResponse.Error("NO ENCUENTRO ERROR") }
             .collect(){
-            _bombitasState.value = MainResponse.Success(it)
+            _bombitasState = MainResponse.Success(it)
         }
 
     }
