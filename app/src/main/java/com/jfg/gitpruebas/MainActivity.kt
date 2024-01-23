@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProgressIndicatorDefaults
@@ -50,9 +51,21 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
 
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+    Column(modifier = Modifier.fillMaxSize()){
         Text(
                 text = "Bombitas: $name!",
+                modifier = modifier
+        )
+        Text(
+                text = "Bombitas2: $name!",
+                modifier = modifier
+        )
+        Text(
+                text = "Bombitas3: $name!",
+                modifier = modifier
+        )
+        Text(
+                text = "Bombitas4: $name!",
                 modifier = modifier
         )
     }
