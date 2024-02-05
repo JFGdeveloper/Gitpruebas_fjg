@@ -51,21 +51,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
 
-    Column(modifier = Modifier.fillMaxSize()){
+    Column(modifier = Modifier.fillMaxSize()) {
         Text(
                 text = "Bombitas: $name!",
-                modifier = modifier
-        )
-        Text(
-                text = "Bombitas2: $name!",
-                modifier = modifier
-        )
-        Text(
-                text = "Bombitas3: $name!",
-                modifier = modifier
-        )
-        Text(
-                text = "Bombitas4: $name!",
                 modifier = modifier
         )
     }
