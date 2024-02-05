@@ -45,6 +45,7 @@ class GitPruebasViewModel: ViewModel() {
     }
 
 
+    // EN ESTE EJEM NO SE LLAMA AL CASO DE USO
      fun getBombitasState() = viewModelScope.launch {
         _bombitasState = MainResponse.Loading
         objRepository.conuter
