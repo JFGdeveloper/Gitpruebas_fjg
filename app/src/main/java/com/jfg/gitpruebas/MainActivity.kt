@@ -56,6 +56,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 text = "Bombitas: $name!",
                 modifier = modifier
         )
+        Text(text = "probando un cherry pick")
     }
 
 }
