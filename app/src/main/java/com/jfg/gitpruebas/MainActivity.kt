@@ -76,6 +76,8 @@ fun ValidateScreen(vm: GitPruebasViewModel) {
         is MainResponse.Success -> {
             Greeting(name = repo.bombitas.toString())
         }
+
+        else -> {}
     }
 
 }
