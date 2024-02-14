@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.presentation
+package com.jfg.gitpruebas.presentation.screen2
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,18 +13,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
+import com.jfg.gitpruebas.presentation.navigation.Routes
 
 @Composable
-fun Screen1(controller: NavHostController) {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.Blue),
-           horizontalAlignment = Alignment.CenterHorizontally,
-           verticalArrangement = Arrangement.Center
+fun Screen2(controller: NavHostController) {
+    Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Blue),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Screen1")
-        Button(onClick = { controller.navigate("screen2") }) {
-            Text(text = "Screen2")
+        Text(text = "Screen2")
+        Button(onClick = { controller.navigate(Routes.Bombitas.route) }) {
+            Text(text = "Bombitas")
         }
     }
 }

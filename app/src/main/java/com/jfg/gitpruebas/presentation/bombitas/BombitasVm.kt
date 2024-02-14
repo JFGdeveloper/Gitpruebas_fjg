@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.presentation
+package com.jfg.gitpruebas.presentation.bombitas
 
 import android.util.Log
 import androidx.compose.runtime.getValue
