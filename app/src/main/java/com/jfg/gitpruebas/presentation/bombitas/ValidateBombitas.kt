@@ -1,10 +1,11 @@
-package com.jfg.gitpruebas.presentation
+package com.jfg.gitpruebas.presentation.bombitas
 
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
+import com.jfg.gitpruebas.presentation.bombitas.BombitasVm
 import com.jfg.gitpruebas.presentation.ui.MainResponse
 
 @Composable

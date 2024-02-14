@@ -11,10 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.jfg.gitpruebas.presentation.BombitasVm
-import com.jfg.gitpruebas.presentation.Screen1
-import com.jfg.gitpruebas.presentation.Screen2
-import com.jfg.gitpruebas.presentation.ValidateBombitas
+import com.jfg.gitpruebas.presentation.bombitas.BombitasVm
+import com.jfg.gitpruebas.presentation.bombitas.ValidateBombitas
+import com.jfg.gitpruebas.presentation.navigation.Routes
+import com.jfg.gitpruebas.presentation.screen1.Screen1
+import com.jfg.gitpruebas.presentation.screen2.Screen2
 import com.jfg.gitpruebas.presentation.ui.theme.GitPruebasTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,10 +36,10 @@ class MainActivity : ComponentActivity() {
 
                    vm.getBombitasState()
                     val controller = rememberNavController()
-                    NavHost(navController = controller, startDestination = "screen1") {
-                        composable("screen1") { Screen1(controller = controller) }
-                        composable("screen2") { Screen2(controller = controller) }
-                        composable("bombitas") { ValidateBombitas(vm = vm, controller = controller )}
+                    NavHost(navController = controller, startDestination = Routes.Screen1.route) {
+                        composable(Routes.Screen1.route) { Screen1(controller = controller) }
+                        composable(Routes.Screen2.route) { Screen2(controller = controller) }
+                        composable(Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
                     }
 
                 }
@@ -48,6 +49,9 @@ class MainActivity : ComponentActivity() {
 }
 
 /***
- * RAMA DE NAVEGACION SIMPLE EL HOST ESTA EN MAINACTIVITY
+ * RAMA DE NAVEGACION 2,
+ * EN ESTE EJEMPLO SE AGREGA UN SELED CLASS PARA MANEJAR LOS PARAMETROS DE NAVEGACION
+ * CREANDO EL ARCHIVO EN UNA CARPETA DE NAVEGACION,
+ * ADEMAS JUNTO LAS PANTALLAS EN CARPETAS SU PROPIA CARPETA
  */
 
