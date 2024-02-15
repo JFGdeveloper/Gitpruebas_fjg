@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.jfg.gitpruebas.presentation.Screen3.Screen3
 import com.jfg.gitpruebas.presentation.bombitas.BombitasVm
 import com.jfg.gitpruebas.presentation.bombitas.ValidateBombitas
 import com.jfg.gitpruebas.presentation.navigation.Routes
@@ -36,10 +37,14 @@ class MainActivity : ComponentActivity() {
 
                    vm.getBombitasState()
                     val controller = rememberNavController()
-                    NavHost(navController = controller, startDestination = Routes.Screen1.route) {
-                        composable(Routes.Screen1.route) { Screen1(controller = controller) }
-                        composable(Routes.Screen2.route) { Screen2(controller = controller) }
+                    NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
                         composable(Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
+                        composable("screen1/{name}") {
+                            val name = it.arguments?.getString("name") ?: "No name"
+                            Screen1(controller = controller, name = name)
+                        }
+                        composable(Routes.Screen2.route) { Screen2(controller = controller) }
+                        composable(Routes.Screen3.route) { Screen3(controller = controller) }
                     }
 
                 }
@@ -49,9 +54,7 @@ class MainActivity : ComponentActivity() {
 }
 
 /***
- * RAMA DE NAVEGACION 2,
- * EN ESTE EJEMPLO SE AGREGA UN SELED CLASS PARA MANEJAR LOS PARAMETROS DE NAVEGACION
- * CREANDO EL ARCHIVO EN UNA CARPETA DE NAVEGACION,
- * ADEMAS JUNTO LAS PANTALLAS EN CARPETAS SU PROPIA CARPETA
+ * RAMA DE NAVEGACION CON PARAMETROS STRING
+ * PASAMOS UN STRING DE UNA PANTALLA A OTRA
  */
 

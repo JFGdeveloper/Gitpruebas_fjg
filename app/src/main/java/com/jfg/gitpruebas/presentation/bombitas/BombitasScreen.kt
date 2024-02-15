@@ -23,8 +23,10 @@ fun Bombitas(name: String, modifier: Modifier = Modifier,controller: NavHostCont
                 text = "Bombitas: $name!",
                 modifier = modifier
         )
-        Text(text = "BOmbitas")
-        Button(onClick = { controller.navigate(Routes.Screen1.route) }) {
+        Text(text = "Bombitas")
+
+        // navegamos a la pantalla3 y pasamos el parametro name
+        Button(onClick = { controller.navigate("screen1/$name") }) {
             Text(text = "Screen1")
         }
     }

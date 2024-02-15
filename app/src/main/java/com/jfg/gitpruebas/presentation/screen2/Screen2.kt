@@ -25,8 +25,8 @@ fun Screen2(controller: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Screen2")
-        Button(onClick = { controller.navigate(Routes.Bombitas.route) }) {
-            Text(text = "Bombitas")
+        Button(onClick = { controller.navigate(Routes.Screen3.route) }) {
+            Text(text = "Screen3")
         }
     }
 }
