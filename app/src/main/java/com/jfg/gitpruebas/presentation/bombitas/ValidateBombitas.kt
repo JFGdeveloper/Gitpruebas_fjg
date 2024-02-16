@@ -22,7 +22,7 @@ fun ValidateBombitas(vm: BombitasVm, controller: NavHostController) {
             Toast.makeText(context, "ERROR: ${repo.msg}", Toast.LENGTH_SHORT).show()
         }
         is MainResponse.Success -> {
-            Bombitas(name = repo.bombitas.toString(), controller = controller)
+            Bombitas(bombitas = repo.bombitas.toString(), controller = controller)
         }
 
         else -> {}

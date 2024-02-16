@@ -12,7 +12,7 @@ import androidx.navigation.NavHostController
 import com.jfg.gitpruebas.presentation.navigation.Routes
 
 @Composable
-fun Bombitas(name: String, modifier: Modifier = Modifier,controller: NavHostController) {
+fun Bombitas(bombitas: String, modifier: Modifier = Modifier,controller: NavHostController) {
 
     Column(
             modifier = Modifier.fillMaxSize(),
@@ -20,13 +20,13 @@ fun Bombitas(name: String, modifier: Modifier = Modifier,controller: NavHostCont
             verticalArrangement = Arrangement.Center
     ) {
         Text(
-                text = "Bombitas: $name!",
+                text = "Bombitas: $bombitas!",
                 modifier = modifier
         )
         Text(text = "Bombitas")
 
         // navegamos a la pantalla3 y pasamos el parametro name
-        Button(onClick = { controller.navigate("screen1/$name") }) {
+        Button(onClick = { controller.navigate("screen1/$bombitas") }) {
             Text(text = "Screen1")
         }
     }
