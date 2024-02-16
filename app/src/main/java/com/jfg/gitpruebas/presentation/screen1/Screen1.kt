@@ -19,7 +19,7 @@ import androidx.navigation.NavHostController
 import com.jfg.gitpruebas.presentation.navigation.Routes
 
 @Composable
-fun Screen1(controller: NavHostController,name: String) {
+fun Screen1(controller: NavHostController,bombitas: String) {
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.Blue),
@@ -28,8 +28,10 @@ fun Screen1(controller: NavHostController,name: String) {
     ) {
         Text(text = "Screen1")
         Spacer(modifier = Modifier.height(20.dp))
-        Text(text = "parametro name: $name")
-        Button(onClick = { controller.navigate(Routes.Screen2.route) }) {
+        Text(text = "parametro bombitas: $bombitas")
+
+        // pasamos un int como parametro necesisto el slapsh y despues el int para que funcione
+        Button(onClick = { controller.navigate("screen2/${bombitas.toInt()}") }) {
             Text(text = "Screen2")
         }
     }
