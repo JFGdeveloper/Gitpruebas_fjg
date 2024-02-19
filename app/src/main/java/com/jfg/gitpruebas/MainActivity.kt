@@ -19,6 +19,7 @@ import com.jfg.gitpruebas.presentation.bombitas.ValidateBombitas
 import com.jfg.gitpruebas.presentation.navigation.Routes
 import com.jfg.gitpruebas.presentation.screen1.Screen1
 import com.jfg.gitpruebas.presentation.screen2.Screen2
+import com.jfg.gitpruebas.presentation.screen4.Screen4
 import com.jfg.gitpruebas.presentation.ui.theme.GitPruebasTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,19 +42,33 @@ class MainActivity : ComponentActivity() {
                     val controller = rememberNavController()
                     NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
                         composable(Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
-                        composable("screen1/{name}") {
+
+                        // los param string no hace falta abrir arguments
+                        composable(Routes.Screen1.route) {
                             val name = it.arguments?.getString("name") ?: "No name"
                             Screen1(controller = controller, bombitas = name)
                         }
+
                         // COMO PASAMOS UN ARGUMENTO QUE YA NO ES STRING, NECESITAMOS LOS ARGUMENTS
                         // DESPUES DE LA COMA, Y EL NOMBRE DEL ARGUMENTO
-                        composable(Routes.Screen2.route+"/{number}",
+                        composable(Routes.Screen2.route,
                                    arguments=  listOf(navArgument("number") { type  = NavType.IntType })
                         ) {
                             val number = it.arguments?.getInt("number") ?: 0
                             Screen2(controller = controller, number = number)
                         }
+
+
                         composable(Routes.Screen3.route) { Screen3(controller = controller) }
+
+                        // PANTALLA CON OPCIONAL
+                        composable(Routes.Screen4.route,
+                                   arguments = listOf(navArgument("saludo"){defaultValue = "HOLA DEFAUL"})
+
+                        ){
+                            val saludo = it.arguments?.getString("saludo")
+                            Screen4(controller = controller, saludo = saludo)
+                        }
                     }
 
                 }
@@ -63,7 +78,7 @@ class MainActivity : ComponentActivity() {
 }
 
 /***
- * RAMA DE NAVEGACION CON PARAMETROS INTENT
- * PASAMOS UN INT A OTRA PANTAALLA
+ * NAVEGAMOS PASANDO PARAMETROS OPCIONALES Y ADEMAS LA RUTA MEJOR ESPRESADA
+ * EN LA SEALED CLASS
  */
 

@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.presentation.Screen3
+package com.jfg.gitpruebas.presentation.screen4
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,8 +17,7 @@ import androidx.navigation.NavController
 import com.jfg.gitpruebas.presentation.navigation.Routes
 
 @Composable
-fun Screen3(controller: NavController) {
-
+fun Screen4(controller: NavController,saludo: String?) {
     Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -26,11 +25,12 @@ fun Screen3(controller: NavController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Screen3")
+        Text(text = "Screen3, $saludo")
         Spacer(modifier = Modifier.height(20.dp))
-        Button(onClick = { controller.navigate(Routes.Screen4.sendSaludo("HOLA JAVI")) }) {
-            Text(text = "Screen4")
+        Button(onClick = { controller.navigate(Routes.Bombitas.route) }) {
+            Text(text = "Bombitas")
         }
     }
+
 
 }
