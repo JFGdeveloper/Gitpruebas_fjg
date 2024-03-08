@@ -6,12 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jfg.gitpruebas.login.domain.usc.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
 
 class LoginViewModel: ViewModel() {
-    //val loginUseCase = LoginUseCase()
+    val loginUseCase = LoginUseCase()
 
     private val _email = MutableLiveData<String>()
     val email : LiveData<String> = _email
@@ -34,18 +35,21 @@ class LoginViewModel: ViewModel() {
     fun enableLogin(email: String, password: String) =
         Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length > 6
 
-   /*
+
     fun onLoginSelected(){
         viewModelScope.launch {
             _isLoading.value = true
             val result = loginUseCase(email.value!!, password.value!!)
             if(result){
                 //Navegar a la siguiente pantalla
-                Log.i("aris", "result OK")
+                Log.i("javi", "API ARIS //////result OK")
+            }else{
+                Log.i("javi", "API ARIS //////result no valido")
+
             }
             _isLoading.value = false
         }
     }
 
-    */
+
 }

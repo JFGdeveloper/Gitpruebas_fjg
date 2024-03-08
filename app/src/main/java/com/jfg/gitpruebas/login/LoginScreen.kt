@@ -187,7 +187,7 @@ fun LoginDivider() {
 @Composable
 fun LoginButton(loginEnable: Boolean, loginViewModel: LoginViewModel) {
     Button(
-            onClick = {  },
+            onClick = { loginViewModel.onLoginSelected() },
             enabled = loginEnable,
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
