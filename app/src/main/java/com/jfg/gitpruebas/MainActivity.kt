@@ -29,6 +29,7 @@ import com.jfg.gitpruebas.presentation.screen2.Screen2
 import com.jfg.gitpruebas.presentation.screen4.Screen4
 import com.jfg.gitpruebas.presentation.ui.theme.GitPruebasTheme
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
