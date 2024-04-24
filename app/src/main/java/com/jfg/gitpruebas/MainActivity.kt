@@ -41,29 +41,31 @@ class MainActivity : ComponentActivity() {
                    vm.getBombitasState()
                     val controller = rememberNavController()
                     NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
-                        composable(Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
+                        composable(route = Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
 
                         // los param string no hace falta abrir arguments
-                        composable(Routes.Screen1.route) {
+                        composable(route = Routes.Screen1.route) {
                             val name = it.arguments?.getString("name") ?: "No name"
                             Screen1(controller = controller, bombitas = name)
                         }
 
                         // COMO PASAMOS UN ARGUMENTO QUE YA NO ES STRING, NECESITAMOS LOS ARGUMENTS
                         // DESPUES DE LA COMA, Y EL NOMBRE DEL ARGUMENTO
-                        composable(Routes.Screen2.route,
-                                   arguments=  listOf(navArgument("number") { type  = NavType.IntType })
+                        composable(
+                                route = Routes.Screen2.route,
+                                arguments=  listOf(navArgument("number") { type  = NavType.IntType })
                         ) {
                             val number = it.arguments?.getInt("number") ?: 0
                             Screen2(controller = controller, number = number)
                         }
 
 
-                        composable(Routes.Screen3.route) { Screen3(controller = controller) }
+                        composable(route = Routes.Screen3.route) { Screen3(controller = controller) }
 
                         // PANTALLA CON OPCIONAL
-                        composable(Routes.Screen4.route,
-                                   arguments = listOf(navArgument("saludo"){defaultValue = "HOLA DEFAUL"})
+                        composable(
+                                route = Routes.Screen4.route,
+                                arguments = listOf(navArgument("saludo"){defaultValue = "HOLA DEFAUL"})
 
                         ){
                             val saludo = it.arguments?.getString("saludo")
