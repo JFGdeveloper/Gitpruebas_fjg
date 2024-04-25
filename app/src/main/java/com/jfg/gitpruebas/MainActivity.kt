@@ -1,6 +1,7 @@
 package com.jfg.gitpruebas
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -13,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.jfg.gitpruebas.model.Contact
 import com.jfg.gitpruebas.presentation.Screen3.Screen3
 import com.jfg.gitpruebas.presentation.bombitas.BombitasVm
 import com.jfg.gitpruebas.presentation.bombitas.ValidateBombitas
@@ -21,10 +23,16 @@ import com.jfg.gitpruebas.presentation.screen1.Screen1
 import com.jfg.gitpruebas.presentation.screen2.Screen2
 import com.jfg.gitpruebas.presentation.screen4.Screen4
 import com.jfg.gitpruebas.presentation.ui.theme.GitPruebasTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     val vm by viewModels<BombitasVm>()
+
+    // creo la lista de contactos de hilt
+    @Inject lateinit var contactos: List<Contact>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +48,10 @@ class MainActivity : ComponentActivity() {
 
                    vm.getBombitasState()
                     val controller = rememberNavController()
+                    contactos.forEach {
+                        Log.d("HIL","contacto creado con hilt: $it")
+                    }
+
                     NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
                         composable(route = Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
 
@@ -80,7 +92,6 @@ class MainActivity : ComponentActivity() {
 }
 
 /***
- * NAVEGAMOS PASANDO PARAMETROS OPCIONALES Y ADEMAS LA RUTA MEJOR ESPRESADA
- * EN LA SEALED CLASS
+ * TRABAJANDO UN EJEM DE HILT
  */
 
