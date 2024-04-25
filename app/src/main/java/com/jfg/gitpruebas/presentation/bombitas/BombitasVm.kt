@@ -22,7 +22,6 @@ class BombitasVm: ViewModel() {
 
     fun getBombitas() = viewModelScope.launch {
         objRepository.conuter.collect(){
-            Log.d("JAVI"," EL NUMERO DE BOMBITAS ES: $it")
         }
     }
 
