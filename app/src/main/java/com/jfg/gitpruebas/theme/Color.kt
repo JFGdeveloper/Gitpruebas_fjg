@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.presentation.ui.theme
+package com.jfg.gitpruebas.theme
 
 import androidx.compose.ui.graphics.Color
 
