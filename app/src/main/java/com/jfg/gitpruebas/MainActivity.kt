@@ -41,12 +41,13 @@ class MainActivity : ComponentActivity() {
                     val controller = rememberNavController()
                     NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
                         composable(Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
+
+                        // PARAMETRO STRING
                         composable("screen1/{name}") {
                             val name = it.arguments?.getString("name") ?: "No name"
                             Screen1(controller = controller, bombitas = name)
                         }
-                        // COMO PASAMOS UN ARGUMENTO QUE YA NO ES STRING, NECESITAMOS LOS ARGUMENTS
-                        // DESPUES DE LA COMA, Y EL NOMBRE DEL ARGUMENTO
+                        // PARAMETRO INT
                         composable(Routes.Screen2.route+"/{number}",
                                    arguments=  listOf(navArgument("number") { type  = NavType.IntType })
                         ) {
