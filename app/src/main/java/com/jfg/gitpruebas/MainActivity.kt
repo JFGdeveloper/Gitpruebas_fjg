@@ -28,8 +28,26 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                 ) {
+                   vm.getBombitasState()
+                    val controller = rememberNavController()
+                    NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
+                        composable(Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
 
-                    LoginScreen(viewModel = vm)
+                        // PARAMETRO STRING
+                        composable("screen1/{name}") {
+                            val name = it.arguments?.getString("name") ?: "No name"
+                            Screen1(controller = controller, bombitas = name)
+                        }
+                        // PARAMETRO INT
+                        composable(Routes.Screen2.route+"/{number}",
+                                   arguments=  listOf(navArgument("number") { type  = NavType.IntType })
+                        ) {
+                            val number = it.arguments?.getInt("number") ?: 0
+                            Screen2(controller = controller, number = number)
+                        }
+                        composable(Routes.Screen3.route) { Screen3(controller = controller) }
+                    }
+
 
                 }
             }
