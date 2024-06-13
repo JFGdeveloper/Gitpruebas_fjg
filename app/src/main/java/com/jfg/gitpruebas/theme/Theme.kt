@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.presentation.ui.theme
+package com.jfg.gitpruebas.theme
 
 import android.app.Activity
 import android.os.Build
