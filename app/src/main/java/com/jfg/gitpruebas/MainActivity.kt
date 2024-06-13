@@ -8,23 +8,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.jfg.gitpruebas.presentation.Screen3.Screen3
-import com.jfg.gitpruebas.presentation.bombitas.BombitasVm
-import com.jfg.gitpruebas.presentation.bombitas.ValidateBombitas
-import com.jfg.gitpruebas.presentation.navigation.Routes
-import com.jfg.gitpruebas.presentation.screen1.Screen1
-import com.jfg.gitpruebas.presentation.screen2.Screen2
-import com.jfg.gitpruebas.presentation.ui.theme.GitPruebasTheme
+import com.jfg.gitpruebas.theme.GitPruebasTheme
+import com.jfg.gitpruebas.theme.login.ui.LoginScreen
+import com.jfg.gitpruebas.theme.login.ui.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    val vm by viewModels<BombitasVm>()
-
+    private val vm by viewModels<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +28,6 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                 ) {
-
                    vm.getBombitasState()
                     val controller = rememberNavController()
                     NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
@@ -57,6 +48,7 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.Screen3.route) { Screen3(controller = controller) }
                     }
 
+
                 }
             }
         }
@@ -64,7 +56,6 @@ class MainActivity : ComponentActivity() {
 }
 
 /***
- * RAMA DE NAVEGACION CON PARAMETROS INTENT
- * PASAMOS UN INT A OTRA PANTAALLA
+ * TRABAJANDO UN EJEM DE HILT
  */
 
