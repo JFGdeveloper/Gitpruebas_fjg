@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.data
+package com.jfg.gitpruebas
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

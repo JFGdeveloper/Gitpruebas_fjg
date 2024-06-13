@@ -7,16 +7,20 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+
 import com.jfg.gitpruebas.theme.GitPruebasTheme
 import com.jfg.gitpruebas.theme.login.ui.LoginScreen
 import com.jfg.gitpruebas.theme.login.ui.LoginViewModel
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val vm by viewModels<LoginViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +32,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                 ) {
+
                    vm.getBombitasState()
                     val controller = rememberNavController()
                     NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
@@ -53,9 +58,15 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 }
 
-/***
- * TRABAJANDO UN EJEM DE HILT
- */
+@Composable
+fun LoginApp(vm: LoginViewModel) {
+    LoginScreen(loginViewModel = vm)
+}
 
+@Composable
+fun Work1(vm: WorkViewModel) {
+    WorkScreen(loginViewModel = vm)
+}
