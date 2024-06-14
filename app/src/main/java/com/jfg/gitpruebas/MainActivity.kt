@@ -7,20 +7,19 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.jfg.gitpruebas.presentation.bombitas.BombitasVm
-import com.jfg.gitpruebas.presentation.bombitas.ValidateBombitas
-import com.jfg.gitpruebas.presentation.navigation.Routes
-import com.jfg.gitpruebas.presentation.screen1.Screen1
-import com.jfg.gitpruebas.presentation.screen2.Screen2
-import com.jfg.gitpruebas.presentation.ui.theme.GitPruebasTheme
 
+import com.jfg.gitpruebas.theme.GitPruebasTheme
+import com.jfg.gitpruebas.theme.login.ui.LoginScreen
+import com.jfg.gitpruebas.theme.login.ui.LoginViewModel
+
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    val vm by viewModels<BombitasVm>()
+    private val vm by viewModels<LoginViewModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,22 +35,38 @@ class MainActivity : ComponentActivity() {
 
                    vm.getBombitasState()
                     val controller = rememberNavController()
-                    NavHost(navController = controller, startDestination = Routes.Screen1.route) {
-                        composable(Routes.Screen1.route) { Screen1(controller = controller) }
-                        composable(Routes.Screen2.route) { Screen2(controller = controller) }
+                    NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
                         composable(Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller )}
+
+                        // PARAMETRO STRING
+                        composable("screen1/{name}") {
+                            val name = it.arguments?.getString("name") ?: "No name"
+                            Screen1(controller = controller, bombitas = name)
+                        }
+                        // PARAMETRO INT
+                        composable(Routes.Screen2.route+"/{number}",
+                                   arguments=  listOf(navArgument("number") { type  = NavType.IntType })
+                        ) {
+                            val number = it.arguments?.getInt("number") ?: 0
+                            Screen2(controller = controller, number = number)
+                        }
+                        composable(Routes.Screen3.route) { Screen3(controller = controller) }
                     }
+
 
                 }
             }
         }
     }
+
 }
 
-/***
- * RAMA DE NAVEGACION 2,
- * EN ESTE EJEMPLO SE AGREGA UN SELED CLASS PARA MANEJAR LOS PARAMETROS DE NAVEGACION
- * CREANDO EL ARCHIVO EN UNA CARPETA DE NAVEGACION,
- * ADEMAS JUNTO LAS PANTALLAS EN CARPETAS SU PROPIA CARPETA
- */
+@Composable
+fun LoginApp(vm: LoginViewModel) {
+    LoginScreen(loginViewModel = vm)
+}
 
+@Composable
+fun Work1(vm: WorkViewModel) {
+    WorkScreen(loginViewModel = vm)
+}
