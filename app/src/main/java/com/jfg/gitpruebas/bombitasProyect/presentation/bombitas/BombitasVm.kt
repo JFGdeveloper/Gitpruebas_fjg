@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jfg.gitpruebas.bombitasProyect.data.repository.EjmRepository
 import com.jfg.gitpruebas.bombitasProyect.data.network.response.MainResponse
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -17,21 +19,25 @@ class BombitasVm: ViewModel() {
 
     val objRepository = EjmRepository()
 
-    private var _bombitasState by mutableStateOf<MainResponse>(MainResponse.Loading)
-    val bombitasState get() = _bombitasState
+    private var _bombitasState = MutableStateFlow<MainResponse>(MainResponse.Loading)
+    val bombitasState: StateFlow<MainResponse> get() = _bombitasState
 
     fun getBombitas() = viewModelScope.launch {
-        objRepository.conuter.collect(){
+        objRepository.conuter.collect{
         }
     }
 
     fun getBomMapEach() = viewModelScope.launch {
         objRepository.conuter
-            .map { it.toString() }
-            .onEach { onSave() }
-            .catch { Log.d("JAVI","ejem del catch en un flow: ${it.message}") }
-            .collect(){
-                Log.d("JAVI","Todo salio bien")
+           // .map { it.toString()  puedo mapear al objeto de data por ejem }
+            .onEach {
+                Log.d("bombitas","bombitas $it")
+            }
+            .catch {
+                MainResponse.Error("fallo ${it.message}")
+            }
+            .collect{
+               _bombitasState.value =  MainResponse.Success(it)
             }
     }
 
@@ -42,11 +48,11 @@ class BombitasVm: ViewModel() {
 
     // EN ESTE EJEM NO SE LLAMA AL CASO DE USO
      fun getBombitasState() = viewModelScope.launch {
-        _bombitasState = MainResponse.Loading
+        _bombitasState.value = MainResponse.Loading
         objRepository.conuter
             .catch { MainResponse.Error("NO ENCUENTRO ERROR") }
             .collect(){
-            _bombitasState = MainResponse.Success(it)
+            _bombitasState.value = MainResponse.Success(it)
         }
 
     }

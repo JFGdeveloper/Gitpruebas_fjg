@@ -17,6 +17,7 @@ import androidx.navigation.navArgument
 import com.jfg.gitpruebas.loginProyect.LoginScreen
 import com.jfg.gitpruebas.loginProyect.presentation.LoginViewModel
 import com.jfg.gitpruebas.bombitasProyect.presentation.Screen3.Screen3
+import com.jfg.gitpruebas.bombitasProyect.presentation.bombitas.BombitasScreen
 import com.jfg.gitpruebas.bombitasProyect.presentation.bombitas.BombitasVm
 import com.jfg.gitpruebas.bombitasProyect.presentation.bombitas.ValidateBombitas
 import com.jfg.gitpruebas.bombitasProyect.presentation.navigation.Routes
@@ -31,7 +32,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val vm by viewModels<BombitasVm>()
+    private val vmBombitas by viewModels<BombitasVm>()
     private val vmLogin by viewModels<LoginViewModel>()
     private val vmWork by viewModels<WorkViewModel>()
 
@@ -49,7 +50,8 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                 ) {
 
-                Work1(vm = vmWork)
+                    BombitasApp(vm = vmBombitas)
+                //Work1(vm = vmWork)
 
                 }
             }
@@ -66,10 +68,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BombitasApp(vm: BombitasVm) {
     val controller = rememberNavController()
+    vm.getBomMapEach()
 
 
     NavHost(navController = controller, startDestination = Routes.Bombitas.route) {
-        composable(Routes.Bombitas.route) { ValidateBombitas(vm = vm, controller = controller ) }
+        composable(Routes.Bombitas.route) {
+            ValidateBombitas(vm = vm, controller = controller )
+
+        }
 
         // los param string no hace falta abrir arguments
         composable(Routes.Screen1.route) {

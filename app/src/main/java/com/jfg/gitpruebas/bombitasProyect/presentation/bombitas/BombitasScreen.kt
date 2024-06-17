@@ -11,7 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 
 @Composable
-fun Bombitas(bombitas: String, modifier: Modifier = Modifier,controller: NavHostController) {
+fun BombitasScreen(vm: BombitasVm,bombitas: Int, modifier: Modifier = Modifier, controller: NavHostController) {
+    // EJECUTANDO EJEM DEL REPOSITORY
 
     Column(
             modifier = Modifier.fillMaxSize(),
