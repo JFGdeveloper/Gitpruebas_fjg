@@ -16,14 +16,15 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.jfg.gitpruebas.loginProyect.LoginScreen
 import com.jfg.gitpruebas.loginProyect.presentation.LoginViewModel
-import com.jfg.gitpruebas.bombitasProyect.presentation.Screen3.Screen3
-import com.jfg.gitpruebas.bombitasProyect.presentation.bombitas.BombitasScreen
-import com.jfg.gitpruebas.bombitasProyect.presentation.bombitas.BombitasVm
-import com.jfg.gitpruebas.bombitasProyect.presentation.bombitas.ValidateBombitas
-import com.jfg.gitpruebas.bombitasProyect.presentation.navigation.Routes
-import com.jfg.gitpruebas.bombitasProyect.presentation.screen1.Screen1
-import com.jfg.gitpruebas.bombitasProyect.presentation.screen2.Screen2
-import com.jfg.gitpruebas.bombitasProyect.presentation.screen4.Screen4
+import com.jfg.gitpruebas.bombitasFlow.presentation.Screen3.Screen3
+import com.jfg.gitpruebas.bombitasFlow.presentation.bombitas.BombitasVm
+import com.jfg.gitpruebas.bombitasFlow.presentation.bombitas.ValidateBombitas
+import com.jfg.gitpruebas.bombitasFlow.presentation.navigation.Routes
+import com.jfg.gitpruebas.bombitasFlow.presentation.screen1.Screen1
+import com.jfg.gitpruebas.bombitasFlow.presentation.screen2.Screen2
+import com.jfg.gitpruebas.bombitasFlow.presentation.screen4.Screen4
+import com.jfg.gitpruebas.coroutines.presentation.CoroutineViewModel
+import com.jfg.gitpruebas.coroutines.presentation.CoroutinesScreen
 import com.jfg.gitpruebas.uiApp.theme.GitPruebasTheme
 import com.jfg.gitpruebas.workProyect.proyec1.login.ui.WorkScreen
 import com.jfg.gitpruebas.workProyect.proyec1.login.ui.WorkViewModel
@@ -35,6 +36,7 @@ class MainActivity : ComponentActivity() {
     private val vmBombitas by viewModels<BombitasVm>()
     private val vmLogin by viewModels<LoginViewModel>()
     private val vmWork by viewModels<WorkViewModel>()
+    private val coroutineVm by viewModels<CoroutineViewModel>()
 
 
 
@@ -50,9 +52,9 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                 ) {
 
-                    BombitasApp(vm = vmBombitas)
-                //Work1(vm = vmWork)
-
+                    //BombitasApp(vm = vmBombitas)
+                    //Work1(vm = vmWork)
+                    CoroutineApp(vm = coroutineVm)
                 }
             }
         }
@@ -117,4 +119,9 @@ fun LoginApp(vm: LoginViewModel) {
 @Composable
 fun Work1(vm: WorkViewModel) {
     WorkScreen(loginViewModel = vm)
+}
+
+@Composable
+fun CoroutineApp(vm: CoroutineViewModel) {
+    CoroutinesScreen(vm = vm)
 }

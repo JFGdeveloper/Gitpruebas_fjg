@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.bombitasProyect.data.repository
+package com.jfg.gitpruebas.bombitasFlow.data.repository
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow

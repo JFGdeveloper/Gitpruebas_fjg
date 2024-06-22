@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.bombitasProyect.presentation.screen4
+package com.jfg.gitpruebas.bombitasFlow.presentation.screen4
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.jfg.gitpruebas.bombitasProyect.presentation.navigation.Routes
+import com.jfg.gitpruebas.bombitasFlow.presentation.navigation.Routes
 
 @Composable
 fun Screen4(controller: NavController,saludo: String?) {

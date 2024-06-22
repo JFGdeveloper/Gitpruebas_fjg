@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.bombitasProyect.presentation.screen1
+package com.jfg.gitpruebas.bombitasFlow.presentation.screen1
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

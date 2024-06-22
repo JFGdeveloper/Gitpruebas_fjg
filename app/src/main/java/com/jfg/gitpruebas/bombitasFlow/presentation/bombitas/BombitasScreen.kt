@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.bombitasProyect.presentation.bombitas
+package com.jfg.gitpruebas.bombitasFlow.presentation.bombitas
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

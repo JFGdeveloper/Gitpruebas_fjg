@@ -1,4 +1,4 @@
-package com.jfg.gitpruebas.bombitasProyect.data.network.response
+package com.jfg.gitpruebas.bombitasFlow.data.network.response
 
 sealed class MainResponse{
     object Loading: MainResponse()

@@ -1,17 +1,15 @@
-package com.jfg.gitpruebas.bombitasProyect.presentation.bombitas
+package com.jfg.gitpruebas.bombitasFlow.presentation.bombitas
 
 import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jfg.gitpruebas.bombitasProyect.data.repository.EjmRepository
-import com.jfg.gitpruebas.bombitasProyect.data.network.response.MainResponse
+import com.jfg.gitpruebas.bombitasFlow.data.repository.EjmRepository
+import com.jfg.gitpruebas.bombitasFlow.data.network.response.MainResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
@@ -27,6 +25,7 @@ class BombitasVm: ViewModel() {
         }
     }
 
+    // CONTROLA EL FLOW Y EL HILO PRINCIPAL A PARTIR DEL FLOWON
     fun getBomMapEach() = viewModelScope.launch {
         objRepository.conuter
            // .map { it.toString()  puedo mapear al objeto de data por ejem }
@@ -36,6 +35,7 @@ class BombitasVm: ViewModel() {
             .catch {
                 MainResponse.Error("fallo ${it.message}")
             }
+            .flowOn(Dispatchers.IO) // DE AQUI HACIA ARRIBA EN HILO SECUNDARIO Y ABAJO EL PRINCIPAL
             .collect{
                _bombitasState.value =  MainResponse.Success(it)
             }
