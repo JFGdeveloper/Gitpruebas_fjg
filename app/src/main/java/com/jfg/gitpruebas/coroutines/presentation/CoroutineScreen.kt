@@ -8,8 +8,13 @@ fun CoroutinesScreen(vm: CoroutineViewModel ) {
 
     // ejecutando coroutine
     LaunchedEffect(key1 = Unit){
-        vm.coroutineSecuencial()
-        vm.coroutineParalelas()
+        //vm.coroutineSecuencial()
+        //vm.coroutineParalelas()
+        //vm.viewModelScope()
+        //vm.globlalScope()
+        //vm.nullCoroutines()
+        //vm.flow()
+        vm.flowBuffer()
     }
 
 

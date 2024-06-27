@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,6 +30,7 @@ import com.jfg.gitpruebas.uiApp.theme.GitPruebasTheme
 import com.jfg.gitpruebas.workProyect.proyec1.login.ui.WorkScreen
 import com.jfg.gitpruebas.workProyect.proyec1.login.ui.WorkViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -43,7 +45,17 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // USO RECOMENDADO PARA APP CON VARIAS ACTIVITYS ESTE CICLO ESTA
+        // LIGADO AL CICLO DE VIDA DEL ACTIVITY
+        lifecycleScope.launch{
+           // coroutineVm.coroutineParalelas()
+        }
+
+
         setContent {
+
+
 
             GitPruebasTheme {
                 // A surface container using the 'background' color from the theme
@@ -55,6 +67,8 @@ class MainActivity : ComponentActivity() {
                     //BombitasApp(vm = vmBombitas)
                     //Work1(vm = vmWork)
                     CoroutineApp(vm = coroutineVm)
+
+                   
                 }
             }
         }
